@@ -16,34 +16,40 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import site.metacoding.blogv3.domain.post.Post;
 import site.metacoding.blogv3.domain.user.User;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @EntityListeners(AuditingEntityListener.class) // 이 부분 추가
 @Entity
 @Table( // 두 개의 컬럼을 동시에 유니크 주기
-        uniqueConstraints = {
-                @UniqueConstraint(name = "love_uk", // 유니크 이름
-                        columnNames = { "postId", "userId" } // 어디에 줄건지
-                )
-        })
+                uniqueConstraints = {
+                                @UniqueConstraint(name = "love_uk", // 유니크 이름
+                                                columnNames = { "postId", "userId" } // 어디에 줄건지
+                                )
+                })
 public class Love {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
 
-    @JoinColumn(name = "postId")
-    @ManyToOne
-    private Post post;
+        @JoinColumn(name = "postId")
+        @ManyToOne
+        private Post post;
 
-    @JoinColumn(name = "userId")
-    @ManyToOne
-    private User user;
+        @JoinColumn(name = "userId")
+        @ManyToOne
+        private User user;
 
-    @CreatedDate // insert 할때만 동작
-    private LocalDateTime createDate;
-    @LastModifiedDate // update 할때만 동작
-    private LocalDateTime updateDate;
+        @CreatedDate // insert 할때만 동작
+        private LocalDateTime createDate;
+        @LastModifiedDate // update 할때만 동작
+        private LocalDateTime updateDate;
 
 }
