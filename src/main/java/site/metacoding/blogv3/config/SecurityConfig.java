@@ -21,12 +21,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // super.configure(http);
         http.csrf().disable(); // csrf 안 쓰면 postman 테스트 못함
+
         http.authorizeRequests()
                 .antMatchers("/s/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/loginForm")
+                // .usernameParameter("user")
+                // .passwordParameter("pwd")
+                .loginPage("/login-form")
+                .loginProcessingUrl("/login") // login 프로세스를 탄다.
+                // .failureHandler(null)
+                // .successHandler(null)
                 .defaultSuccessUrl("/");
     }
 }
