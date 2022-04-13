@@ -23,16 +23,19 @@ public class UserController {
     // DI
     private final UserService userService;
 
+    // 로그인 페이지
     @GetMapping({ "/login-form" })
     public String loginForm() {
         return "/user/loginForm";
     }
 
+    // 회원가입 페이지
     @GetMapping("/join-form")
     public String joinForm() {
         return "/user/joinForm";
     }
 
+    // 회원가입
     @PostMapping("/join")
     public String join(@Valid JoinReqDto joinReqDto, BindingResult bindingResult) { // 벨리데이션 체크
 
