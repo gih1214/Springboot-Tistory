@@ -26,46 +26,6 @@
     </div>
 </div>
 
-<script>
-    // 벨리데이션 체크 함수 - 필요에 따라 여러개 넣을 수 있음
-    let valid = {
-        state: false,
-        password: ""
-    }
-
-    // 비밀번호 체크 이벤트 리스너
-    $("#same-password").keyup((event) => {
-        passwordSameCheck();
-    });
-
-    // 유효성체크 함수
-    function validation() {
-        if (valid.state === false) {
-            // valid.password 내용을 div 박스 안에 채워 넣기
-            $(".my_error_box").html(`${valid.password}<br />`);
-            $(".my_error_box").removeClass("my_hidden");
-        }
-        return valid.state;
-    }
-
-    // 비밀번호 체크 함수
-    function passwordSameCheck() {
-        // 1. password 값 찾기
-        let password = $("#password").val();
-
-        // 2. same-password 값 찾기
-        let samePassword = $("#same-password").val();
-
-        // 3. 두 개의 값을 비교하기
-        if (password == samePassword) {
-            // console.log("두 개의 비밀번호가 동일합니다.");
-            valid.password = "패스워드가 동일합니다.";
-            valid.state = true;
-        } else {
-            valid.password = "패스워드가 동일하지 않습니다.";
-            valid.state = false;
-        }
-    }
-</script>
+<script src="js/user/joinForm.js"></script>
 
 {{>/layout/footer}}
